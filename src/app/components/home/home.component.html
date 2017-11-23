@@ -1,0 +1,95 @@
+<mat-progress-bar mode="{{devDepSource ? 'determinate' : 'indeterminate'}}" value="100"></mat-progress-bar>
+<mat-tab-group>
+  <mat-tab label="Dependancies">
+    <mat-card>
+      <div class="example-container mat-elevation-z8">
+
+        <mat-table #table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Package Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.package.name}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="installedVersion">
+            <mat-header-cell *matHeaderCellDef>Installed Version</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.installedVersion}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="latestVersion">
+            <mat-header-cell *matHeaderCellDef>Latest Version</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.package.latestVersion}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="update">
+            <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button (click)="updateDep(element)" mat-raised-button color="primary">Update</button>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Color Column -->
+          <ng-container matColumnDef="remove">
+            <mat-header-cell *matHeaderCellDef> Remove </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-raised-button color="warn">Remove</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Dev Dependancies">
+    <mat-card>
+      <div class="example-container mat-elevation-z8">
+
+        <mat-table #table [dataSource]="devDepSource">
+
+          <!-- Position Column -->
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Package Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.package.name}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="installedVersion">
+            <mat-header-cell *matHeaderCellDef>Installed Version</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.installedVersion}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="latestVersion">
+            <mat-header-cell *matHeaderCellDef>Latest Version</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.package.latestVersion}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="update">
+            <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-raised-button color="primary">Update</button>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Color Column -->
+          <ng-container matColumnDef="remove">
+            <mat-header-cell *matHeaderCellDef> Remove </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-raised-button color="warn">Remove</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
